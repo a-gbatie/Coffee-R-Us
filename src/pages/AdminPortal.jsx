@@ -14,12 +14,12 @@ function AdminPortal() {
   // Fetch products when the Admin Portal loads
   useEffect(() => {
     fetch(productsURL)
-      .then((response) => {
-        if (!response.ok) {
+      .then((res) => {
+        if (!res.ok) {
           throw new Error("Failed to fetch products");
         }
 
-        return response.json();
+        return res.json();
       })
       .then((data) => {
         setProducts(data);
@@ -35,7 +35,7 @@ function AdminPortal() {
   // Save a new product to JSON Server
   async function handleAddProduct(newProduct) {
     try {
-      const response = await fetch(productsURL, {
+      const res = await fetch(productsURL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,16 +43,39 @@ function AdminPortal() {
         body: JSON.stringify(newProduct),
       });
 
-      if (!response.ok) {
+      if (!res.ok) {
         throw new Error("Failed to add product");
       }
 
-      const savedProduct = await response.json();
+      const savedProduct = await res.json();
 
       // Add the saved product to the existing products array
       setProducts((previousProducts) => [...previousProducts, savedProduct]);
     } catch (error) {
       setError("Unable to add product.");
+    }
+  }
+
+  // Delete a product from JSON Server using its ID
+  async function handleDeleteProduct(e) {
+    // Get the product ID stored on the clicked button
+    const id = e.currentTarget.dataset.id;
+
+    try {
+      const res = await fetch(`${productsURL}/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to delete product");
+      }
+
+      // Remove the deleted product from React state
+      setProducts((previousProducts) =>
+        previousProducts.filter((product) => String(product.id) !== id),
+      );
+    } catch (error) {
+      setError("Unable to delete product.");
     }
   }
 
@@ -75,6 +98,7 @@ function AdminPortal() {
               <th>Product</th>
               <th>Origin</th>
               <th>Price</th>
+              <th>Delete</th>
             </tr>
           </thead>
 
@@ -84,6 +108,17 @@ function AdminPortal() {
                 <td>{product.name}</td>
                 <td>{product.origin}</td>
                 <td>${Number(product.price).toFixed(2)}</td>
+
+                <td>
+                  {/*Delete selected producted */}
+                  <button
+                    type="button"
+                    data-id={product.id}
+                    onClick={handleDeleteProduct}
+                  >
+                    X
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
