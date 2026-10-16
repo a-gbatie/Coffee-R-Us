@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import AddProductForm from "../components/AddProductForm";
 
 function AdminPortal() {
   const productsURL = "http://localhost:6001/products";
@@ -31,6 +32,30 @@ function AdminPortal() {
       });
   }, []);
 
+  // Save a new product to JSON Server
+  async function handleAddProduct(newProduct) {
+    try {
+      const response = await fetch(productsURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProduct),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add product");
+      }
+
+      const savedProduct = await response.json();
+
+      // Add the saved product to the existing products array
+      setProducts((previousProducts) => [...previousProducts, savedProduct]);
+    } catch (error) {
+      setError("Unable to add product.");
+    }
+  }
+
   return (
     <main>
       <h1>Admin Portal</h1>
@@ -39,6 +64,8 @@ function AdminPortal() {
       {/* Display loading and error messages */}
       {loading && <p>Loading products...</p>}
       {error && <p>{error}</p>}
+
+      <AddProductForm onAddProduct={handleAddProduct} />
 
       {/* Display existing products in a table */}
       {!loading && !error && (

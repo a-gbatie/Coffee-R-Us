@@ -39,6 +39,15 @@
       "origin": "USA",
       "price": 12,
       "image": "/images/icedberry.jpg"
+    },
+    {
+      "name": "Strawberry Smoothie",
+      "description": "fruity blended drink",
+      "origin": "USA",
+      "price": 14,
+      "image": "https://images.pexels.com/photos/4051780/pexels-photo-4051780.jpeg",
+      "id": "evYPfZcAv98"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
