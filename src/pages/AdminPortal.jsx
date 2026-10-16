@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import AddProductForm from "../components/AddProductForm";
+import EditProductForm from "../components/EditProductForm";
 
 function AdminPortal() {
   const productsURL = "http://localhost:6001/products";
@@ -10,6 +11,9 @@ function AdminPortal() {
   // Track loading and error states
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  // Store the product currently selected for editing
+  const [editingProduct, setEditingProduct] = useState(null);
 
   // Fetch products when the Admin Portal loads
   useEffect(() => {
@@ -79,6 +83,53 @@ function AdminPortal() {
     }
   }
 
+  // Select a product to edit using the button's data-id
+  function handleEditClick(e) {
+    const id = e.currentTarget.dataset.id;
+
+    const selectedProduct = products.find(
+      (product) => String(product.id) === id,
+    );
+
+    setEditingProduct(selectedProduct);
+  }
+
+  // Save the updated product to JSON Server
+  async function handleUpdateProduct(updatedProduct) {
+    try {
+      const res = await fetch(`${productsURL}/${updatedProduct.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update product");
+      }
+
+      const savedProduct = await res.json();
+
+      // Replace the old product with the updated one
+      setProducts((previousProducts) =>
+        previousProducts.map((product) =>
+          product.id === savedProduct.id ? savedProduct : product,
+        ),
+      );
+
+      // Close the edit form after saving
+      setEditingProduct(null);
+    } catch (error) {
+      setError("Unable to update product.");
+    }
+  }
+
+  // Close the edit form without saving
+  function handleCancelEdit() {
+    setEditingProduct(null);
+  }
+
   return (
     <main>
       <h1>Admin Portal</h1>
@@ -90,6 +141,16 @@ function AdminPortal() {
 
       <AddProductForm onAddProduct={handleAddProduct} />
 
+      {/* Only show the edit form when a product is selected */}
+      {editingProduct && (
+        <EditProductForm
+          key={editingProduct.id}
+          product={editingProduct}
+          onUpdateProduct={handleUpdateProduct}
+          onCancel={handleCancelEdit}
+        />
+      )}
+
       {/* Display existing products in a table */}
       {!loading && !error && (
         <table className="admin-table">
@@ -98,7 +159,7 @@ function AdminPortal() {
               <th>Product</th>
               <th>Origin</th>
               <th>Price</th>
-              <th>Delete</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
@@ -110,6 +171,15 @@ function AdminPortal() {
                 <td>${Number(product.price).toFixed(2)}</td>
 
                 <td>
+                  {/*Edit selected producted */}
+                  <button
+                    type="button"
+                    data-id={product.id}
+                    onClick={handleEditClick}
+                  >
+                    Edit
+                  </button>
+
                   {/*Delete selected producted */}
                   <button
                     type="button"
