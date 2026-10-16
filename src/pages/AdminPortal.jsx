@@ -1,40 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import useProducts from "../hooks/useProducts";
 import AddProductForm from "../components/AddProductForm";
 import EditProductForm from "../components/EditProductForm";
 
 function AdminPortal() {
   const productsURL = "http://localhost:6001/products";
 
-  // Store products fetched from JSON Server
-  const [products, setProducts] = useState([]);
-
-  // Track loading and error states
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
   // Store the product currently selected for editing
   const [editingProduct, setEditingProduct] = useState(null);
 
-  // Fetch products when the Admin Portal loads
-  useEffect(() => {
-    fetch(productsURL)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch products");
-        }
-
-        return res.json();
-      })
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch(() => {
-        setError("Unable to load products.");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  // Use our custom hook to fetch and manage products
+  const { products, setProducts, loading, error, setError } = useProducts();
 
   // Save a new product to JSON Server
   async function handleAddProduct(newProduct) {
@@ -55,7 +31,7 @@ function AdminPortal() {
 
       // Add the saved product to the existing products array
       setProducts((previousProducts) => [...previousProducts, savedProduct]);
-    } catch (error) {
+    } catch {
       setError("Unable to add product.");
     }
   }
@@ -78,7 +54,7 @@ function AdminPortal() {
       setProducts((previousProducts) =>
         previousProducts.filter((product) => String(product.id) !== id),
       );
-    } catch (error) {
+    } catch {
       setError("Unable to delete product.");
     }
   }
@@ -120,7 +96,7 @@ function AdminPortal() {
 
       // Close the edit form after saving
       setEditingProduct(null);
-    } catch (error) {
+    } catch {
       setError("Unable to update product.");
     }
   }

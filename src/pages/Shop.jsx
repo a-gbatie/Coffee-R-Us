@@ -1,36 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import useProducts from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
 
 function Shop() {
-  // Store the products fetched from JSON Server
-  const [products, setProducts] = useState([]);
+  // Fetch and manage products using our custom hook
+  const { products, loading, error } = useProducts();
 
-  // Store the user's search input
+  // Keep search state separate because only Shop needs it
   const [search, setSearch] = useState("");
-
-  // Track loading and errors
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  // Fetch products when the Shop component mounts
-  useEffect(() => {
-    fetch("http://localhost:6001/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch(() => {
-        setError("Unable to load products.");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
 
   // Filter products based on the search input
   const filteredProducts = products.filter((product) =>
