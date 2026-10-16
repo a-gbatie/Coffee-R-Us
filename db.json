@@ -5,21 +5,40 @@
       "name": "Black Coffee",
       "description": "Medium roast with a nutty flavor",
       "origin": "Colombia",
-      "price": 10
+      "price": 10,
+      "image": "/images/blackcoffee.jpg"
     },
     {
       "id": "2",
       "name": "Iced Coffee",
       "description": "Iced dark roast with a rich flavor and milk",
       "origin": "Vietnam",
-      "price": 12
+      "price": 12,
+      "image": "/images/icedcoffee.jpg"
     },
     {
       "id": "3",
       "name": "Matcha Latte",
-      "description": "Creamy iced drink with a floral earthy flavor",
+      "description": "Hot drink with a floral earthy flavor",
       "origin": "Japan",
-      "price": 12
+      "price": 10,
+      "image": "/images/matchalatte.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Iced Matcha Latte",
+      "description": "Iced matcha with a floral flavor and milk",
+      "origin": "Japan",
+      "price": 12,
+      "image": "/images/icedmatcha.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Iced Berry Latte",
+      "description": "Refreshing berry packed fruity drink",
+      "origin": "USA",
+      "price": 12,
+      "image": "/images/icedberry.jpg"
     }
   ]
 }
