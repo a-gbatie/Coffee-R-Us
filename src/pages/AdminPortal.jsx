@@ -144,7 +144,18 @@ function AdminPortal() {
             <tbody>
               {products.map((product) => (
                 <tr key={product.id}>
-                  <td>{product.name}</td>
+                  <td>
+                    <div className="admin-product-info">
+                      {/* Display the product image beside its name */}
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="admin-product-image"
+                      />
+
+                      <span>{product.name}</span>
+                    </div>
+                  </td>
                   <td>{product.origin}</td>
                   <td>${Number(product.price).toFixed(2)}</td>
 

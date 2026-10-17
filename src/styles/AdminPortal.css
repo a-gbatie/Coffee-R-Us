@@ -103,3 +103,24 @@
     padding: 0.5rem 0.75rem;
   }
 }
+
+/* Align the product image and name horizontally */
+.admin-product-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Small, consistent product thumbnails */
+.admin-product-image {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.admin-product-info span {
+  font-weight: 500;
+  color: #38251b;
+}

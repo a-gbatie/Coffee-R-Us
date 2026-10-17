@@ -7,6 +7,22 @@
       "origin": "Vietnam",
       "price": 13,
       "image": "/images/icedcoffee.jpg"
+    },
+    {
+      "name": "Smoothie",
+      "description": "Blended fruity drink.",
+      "origin": "USA",
+      "price": 14,
+      "image": "/images/smoothie.jpg",
+      "id": "DNb45F23S3k"
+    },
+    {
+      "name": "Matcha Latte",
+      "description": "Vibrant green rich, earthy, flavor from ground green tea leaves. ",
+      "origin": "Japan",
+      "price": 10,
+      "image": "/images/matchalatte.jpg",
+      "id": "_0oVSCBCwPM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
