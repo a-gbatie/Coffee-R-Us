@@ -1,6 +1,7 @@
 /* Main navigation header */
 .site-header {
   background-color: #38251b;
+  margin-top: 1.5rem;
   width: 100%;
 }
 

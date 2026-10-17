@@ -6,6 +6,15 @@
   border-radius: 8px;
 }
 
+/* Improve readability of product details */
+.product-card {
+  color: #66554a;
+}
+
 .product-card h2 {
-  color: gray; 
+  color: #38251b;
+}
+
+.product-card p {
+  color: #66554a;
 }
