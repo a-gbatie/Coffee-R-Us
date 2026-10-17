@@ -5,3 +5,7 @@
   object-fit: cover;
   border-radius: 8px;
 }
+
+.product-card h2 {
+  color: gray; 
+}
