@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import "../styles/CoffeeAssistant.css";
 
 function CoffeeAssistant() {
   // Store the customer's current input
@@ -85,34 +86,52 @@ function CoffeeAssistant() {
 
   return (
     <section className="coffee-assistant">
-      <h2>Coffee R Us Assistant</h2>
-      <p>Have a question about coffee? Ask our assistant!</p>
-
-      {/* Display customer and AI messages */}
-      <div className="chat-messages" aria-live="polite">
-        {messages.map((chatMessage, index) => (
-          <div key={index} className={`chat-message ${chatMessage.role}`}>
-            <strong>
-              {chatMessage.role === "user" ? "You:" : "Assistant:"}
-            </strong>
-
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {chatMessage.content}
-            </ReactMarkdown>
-          </div>
-        ))}
+      <div className="chat-header">
+        <h2>Coffee R Us Assistant</h2>
+        <p>Need a recommendation? Ask away!</p>
       </div>
 
-      {loading && <p>Assistant is thinking...</p>}
-      {error && <p role="alert">{error}</p>}
+      {/* Display the conversation */}
+      <div className="chat-messages" aria-live="polite">
+        {messages.length === 0 && (
+          <p className="chat-welcome">
+            Welcome! Ask me about coffee flavors, roasts, or about other drinks.
+          </p>
+        )}
 
-      {/* Send a question to Ollama */}
-      <form onSubmit={handleSubmit}>
+        {messages.map((chatMessage, index) => (
+          <div key={index} className={`chat-message ${chatMessage.role}`}>
+            <span className="chat-sender">
+              {chatMessage.role === "user" ? "You" : "Coffee Assistant"}
+            </span>
+
+            {/* Format Ollama responses using Markdown */}
+            <div className="chat-content">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {chatMessage.content}
+              </ReactMarkdown>
+            </div>
+          </div>
+        ))}
+
+        {loading && (
+          <p className="chat-loading">Coffee Assistant is thinking...</p>
+        )}
+      </div>
+
+      {error && (
+        <p className="chat-error" role="alert">
+          {error}
+        </p>
+      )}
+
+      {/* Customer message input */}
+      <form className="chat-form" onSubmit={handleSubmit}>
         <input
           type="text"
           value={message}
           onChange={handleChange}
-          placeholder="Ask about our coffee..."
+          placeholder="Ask me anything about coffee..."
           aria-label="Message"
         />
 
