@@ -10,7 +10,7 @@ const mockProduct = {
   description: "Medium roast with a nutty flavor",
   origin: "Colombia",
   price: 10,
-  image: "/images/coffeelatte.jpg",
+  image: "/images/vanilla_bean.jpg",
 };
 
 describe("ProductCard", () => {
@@ -37,6 +37,6 @@ describe("ProductCard", () => {
     // Check the product image
     expect(
       screen.getByRole("img", { name: "Vanilla Bean" })
-    ).toHaveAttribute("src", "/images/vanilla-bean.jpg");
+    ).toHaveAttribute("src", "/images/vanilla_bean.jpg");
   });
 });
