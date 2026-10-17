@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/ProductForm.css";
 
 function EditProductForm({ product, onUpdateProduct, onCancel }) {
   // Start the form with the selected product's information
@@ -32,7 +33,7 @@ function EditProductForm({ product, onUpdateProduct, onCancel }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="product-form" onSubmit={handleSubmit}>
       <h2>Edit Product</h2>
 
       <input

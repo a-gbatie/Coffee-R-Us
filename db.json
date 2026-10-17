@@ -7,14 +7,6 @@
       "origin": "Vietnam",
       "price": 13,
       "image": "/images/icedcoffee.jpg"
-    },
-    {
-      "name": "Smoothie",
-      "description": "blended fruity drink",
-      "origin": "USA",
-      "price": 14,
-      "image": "/images/smoothie.jpg",
-      "id": "StRyHHbr8dA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

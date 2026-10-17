@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/ProductForm.css";
 
 function AddProductForm({ onAddProduct }) {
   // Store the values entered into the form
@@ -40,7 +41,7 @@ function AddProductForm({ onAddProduct }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form  className="product-form" onSubmit={handleSubmit}>
       <h2>Add New Product</h2>
 
       <input

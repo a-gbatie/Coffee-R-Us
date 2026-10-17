@@ -1,0 +1,67 @@
+/* Shared styling for Add and Edit forms */
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  padding: 2rem;
+  margin: 2rem 0;
+  background-color: #fffaf4;
+  border: 1px solid #e3d5c7;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(56, 37, 27, 0.08);
+}
+
+.product-form h2 {
+  color: #38251b;
+  margin: 0 0 0.5rem;
+}
+
+/* Form inputs */
+.product-form input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #cbb9a8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #38251b;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.product-form input:focus {
+  outline: 2px solid #996b43;
+  outline-offset: 2px;
+}
+
+/* Form buttons */
+.product-form button {
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #6f4e37;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.product-form button:hover {
+  background-color: #4b3223;
+}
+
+/* Cancel button on the Edit form */
+.product-form button[type="button"] {
+  background-color: #806c5c;
+}
+
+.product-form button[type="button"]:hover {
+  background-color: #66554a;
+}
+
+@media (max-width: 600px) {
+  .product-form {
+    padding: 1.25rem;
+    max-width: 100%;
+  }
+}

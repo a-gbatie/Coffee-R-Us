@@ -2,6 +2,7 @@ import { useState } from "react";
 import useProducts from "../hooks/useProducts";
 import AddProductForm from "../components/AddProductForm";
 import EditProductForm from "../components/EditProductForm";
+import "../styles/AdminPortal.css";
 
 function AdminPortal() {
   const productsURL = "http://localhost:6001/products";
@@ -107,7 +108,7 @@ function AdminPortal() {
   }
 
   return (
-    <main>
+    <main className="admin-page">
       <h1>Admin Portal</h1>
       <p>Manage your coffee products here.</p>
 
@@ -129,46 +130,50 @@ function AdminPortal() {
 
       {/* Display existing products in a table */}
       {!loading && !error && (
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Origin</th>
-              <th>Price</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td>{product.name}</td>
-                <td>{product.origin}</td>
-                <td>${Number(product.price).toFixed(2)}</td>
-
-                <td>
-                  {/*Edit selected producted */}
-                  <button
-                    type="button"
-                    data-id={product.id}
-                    onClick={handleEditClick}
-                  >
-                    Edit
-                  </button>
-
-                  {/*Delete selected producted */}
-                  <button
-                    type="button"
-                    data-id={product.id}
-                    onClick={handleDeleteProduct}
-                  >
-                    X
-                  </button>
-                </td>
+        <div className="admin-table-container">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Origin</th>
+                <th>Price</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td>{product.name}</td>
+                  <td>{product.origin}</td>
+                  <td>${Number(product.price).toFixed(2)}</td>
+
+                  <td className="admin-actions">
+                    {/*Edit selected producted */}
+                    <button
+                      type="button"
+                      className="edit-button"
+                      data-id={product.id}
+                      onClick={handleEditClick}
+                    >
+                      Edit
+                    </button>
+
+                    {/*Delete selected producted */}
+                    <button
+                      type="button"
+                      className="delete-button"
+                      data-id={product.id}
+                      onClick={handleDeleteProduct}
+                    >
+                      X
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </main>
   );

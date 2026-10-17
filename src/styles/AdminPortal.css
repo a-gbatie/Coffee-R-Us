@@ -1,0 +1,105 @@
+/* Table container */
+.admin-table-container {
+  width: 100%;
+  margin-top: 2rem;
+  overflow-x: auto;
+  border: 1px solid #e3d5c7;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(56, 37, 27, 0.1);
+}
+
+/* Main table */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fffaf4;
+  color: #38251b;
+  text-align: left;
+}
+
+/* Table headings */
+.admin-table th {
+  padding: 1.2rem 1.5rem;
+  background-color: #38251b;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+/* Product rows */
+.admin-table td {
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid #e3d5c7;
+  vertical-align: middle;
+}
+
+/* Alternate row backgrounds */
+.admin-table tbody tr:nth-child(even) {
+  background-color: #f5eee5;
+}
+
+/* Highlight the row under the mouse */
+.admin-table tbody tr:hover {
+  background-color: #eadccc;
+}
+
+/* Remove border from the final row */
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Keep action buttons together */
+.admin-actions {
+  white-space: nowrap;
+}
+
+/* Shared button styling */
+.admin-actions button {
+  padding: 0.6rem 1.1rem;
+  border: none;
+  border-radius: 7px;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Edit button */
+.admin-actions .edit-button {
+  background-color: #6f4e37;
+  margin-right: 0.6rem;
+}
+
+.admin-actions .edit-button:hover {
+  background-color: #4b3223;
+}
+
+/* Delete button */
+.admin-actions .delete-button {
+  background-color: #a44737;
+}
+
+.admin-actions .delete-button:hover {
+  background-color: #802f23;
+}
+
+/* Keyboard accessibility */
+.admin-actions button:focus-visible {
+  outline: 3px solid #d5a06f;
+  outline-offset: 3px;
+}
+
+/* Responsive table */
+@media (max-width: 600px) {
+  .admin-table th,
+  .admin-table td {
+    padding: 0.8rem;
+  }
+
+  .admin-actions button {
+    padding: 0.5rem 0.75rem;
+  }
+}
