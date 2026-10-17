@@ -23,6 +23,14 @@
       "price": 10,
       "image": "/images/matchalatte.jpg",
       "id": "_0oVSCBCwPM"
+    },
+    {
+      "name": "Black Coffee",
+      "description": "Dark roast with a rich, nutty flavor",
+      "origin": "Columbia",
+      "price": 8,
+      "image": "/images/blackcoffee.jpg",
+      "id": "uthEMZkTHKY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
