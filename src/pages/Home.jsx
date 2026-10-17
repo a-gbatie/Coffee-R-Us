@@ -1,13 +1,38 @@
+import { Link } from "react-router-dom";
 import CoffeeAssistant from "../components/CoffeeAssistant";
+import "../styles/Home.css";
 
 function Home() {
   return (
-    <div>
-      <h1>Coffee R Us</h1>
-      <p>The go-to store for your coffee needs and other iced delights.</p>
+    <main>
+      {/* Home page hero section */}
+      <section className="hero">
+        <div className="hero-content">
+          <p className="hero-subtitle">Freshly Roasted. Deliciously Refreshing. Made for You.</p>
 
+          <h1>Better Coffee, Better Mornings.</h1>
+
+          <p className="hero-description">
+            Discover rich flavors, quality beans, and your next
+            favorite cup of coffee, latte, or smoothie. 
+          </p>
+
+          <Link to="/shop" className="hero-button">
+            Shop Our Drinks
+          </Link>
+        </div>
+
+        <div className="hero-image">
+          <img
+            src="/images/headerimg.jpg"
+            alt="Coffee and matcha"
+          />
+        </div>
+      </section>
+
+      {/* AI assistant section */}
       <CoffeeAssistant />
-    </div>
+    </main>
   );
 }
 

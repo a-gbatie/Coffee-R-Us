@@ -1,0 +1,84 @@
+/* Main hero layout */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 5rem 8%;
+  background-color: #f5eee5;
+}
+
+/* Text content */
+.hero-content {
+  flex: 1;
+}
+
+.hero-subtitle {
+  color: #996b43;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  color: #38251b;
+  margin: 1rem 0;
+}
+
+.hero-description {
+  max-width: 450px;
+  color: #66554a;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* Shop button */
+.hero-button {
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  background-color: #6f4e37;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.hero-button:hover {
+  background-color: #4b3223;
+}
+
+/* Hero image */
+.hero-image {
+  flex: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Stack content on smaller screens */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding: 3rem 5%;
+    text-align: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-image {
+    width: 100%;
+  }
+
+  .hero-image img {
+    height: 300px;
+  }
+}
